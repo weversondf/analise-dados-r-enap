@@ -1,0 +1,30 @@
+---
+title: "diabetes-relatorio"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Obtenção dos dados
+
+```{r}
+diabetes <- read.csv(
+  file = "D:/Datasets/diabetes.csv"
+)
+
+head(diabetes)
+```
+
+# Preparação dos dados
+```{r message=FALSE, warning=FALSE}
+diabetes$Outcome <- as.factor((diabetes$Outcome))
+
+library(dplyr)
+
+diabetes2 <- diabetes %>%
+  filter(Insulin <= 250)
+```
